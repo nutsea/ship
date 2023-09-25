@@ -49,3 +49,9 @@
         }
     }
 }
+
+@media (max-width: 475px) {
+    .Tabs {
+        width: calc(90% - 8px) !important;
+    }
+}
