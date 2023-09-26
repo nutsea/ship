@@ -98,7 +98,9 @@ const Calculator = () => {
                     </div>
                 </div>
             }
-            <button className="ShipNew">Оформить новый заказ</button>
+            <div className="ShipNew">
+                <a className="ShipLink" href="https://t.me/ship_snikers" target="_blank" rel="noreferrer">Оформить новый заказ</a>
+            </div>
         </div>
     );
 }
