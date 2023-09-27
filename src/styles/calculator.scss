@@ -1,3 +1,4 @@
+@use 'base';
 
 .CalculatorContainer {
     width: 400px;
@@ -17,11 +18,6 @@
         opacity: 1;
         font-size: 16px;
         cursor: pointer;
-        transition: opacity 0.1s linear;
-
-        &:hover {
-            opacity: 0.8;
-        }
     
         .BoxImgContainer {
             width: 10%;
@@ -197,7 +193,7 @@
             position: absolute;
             height: 40px;
             width: 40px;
-            background-color: rgb(50, 50, 50);
+            background-color: base.$base-color;
             top: calc(50% - 20px);
             right: 5%;
             display: flex;
@@ -216,7 +212,7 @@
         margin-top: 10px;
         width: 100%;
         height: 48px;
-        background-color: rgb(50, 50, 50);
+        background-color: base.$base-color;
         color: white;
         border-radius: 10px;
         font-family: Montserrat;

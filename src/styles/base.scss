@@ -30,9 +30,12 @@ body {
     background-color: rgb(240, 240, 240);
     margin: 0;
     width: 100vw;
+    background-image: url('./../assets/background.png');
 }
 
 html {
     width: 100vw;
     overflow-x: hidden;
 }
+
+$base-color: #1f6eff;

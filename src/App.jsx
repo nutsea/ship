@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Calculator from './components/Calculator'
 import Tracker from './components/Tracker'
 
+import logo from './assets/logo.png'
+
 function App() {
     const [tab, setTab] = useState('calc')
 
@@ -18,7 +20,10 @@ function App() {
 
     return (
         <div className="App">
-            <div className='Subtitle'>WP SHOP</div>
+            {/* <div className='Subtitle'>WP SHOP</div> */}
+            <div className='AppLogo'>
+                <img src={logo} alt="logo" />
+            </div>
             <div className='Tabs'>
                 <div className='Tab Active' id='calc' onClick={tabClick}>КАЛЬКУЛЯТОР</div>
                 <div className='Tab' id='track' onClick={tabClick}>ОТСЛЕЖИВАНИЕ</div>
