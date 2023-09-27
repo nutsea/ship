@@ -15,6 +15,7 @@ const Calculator = () => {
     const [yuanCost, setYuanCost] = useState('')
     const [yuanCourse, setYuanCourse] = useState(0)
     const [totalCost, setTotalCost] = useState(0)
+    const [comission, setComission] = useState(0)
 
     useEffect(() => {
         fetchYuan()
@@ -56,22 +57,41 @@ const Calculator = () => {
         if (cleanedCost > 0) {
             let totalcost = 0
             if (type === 'item1' && yuanCourse.course) {
-                if (Number(cleanedCost) < 50) totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 500 + 1700
-                else totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999 + 1700
+                if (Number(cleanedCost) < 99) {
+                    totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 499
+                    setComission(499)
+                }
+                else {
+                    totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999
+                    setComission(999)
+                }
             }
             if (type === 'item2' && yuanCourse.course) {
-                if (Number(cleanedCost) < 50) totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 500 + 1700
-                else totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999 + 1000
+                if (Number(cleanedCost) < 99) {
+                    totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 499
+                    setComission(499)
+                }
+                else {
+                    totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999
+                    setComission(999)
+                }
             }
             if (type === 'item3' && yuanCourse.course) {
-                if (Number(cleanedCost) < 50) totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 500 + 1700
-                else totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999 + 1300
+                if (Number(cleanedCost) < 99) {
+                    totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 499
+                    setComission(499)
+                }
+                else {
+                    totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999
+                    setComission(999)
+                }
             }
             setTotalCost(totalcost)
         } else {
             setTotalCost(0)
+            setComission(0)
         }
-        if (cleanedCost.length > 0 && Number(cleanedCost) < 50) {
+        if (cleanedCost.length > 0 && Number(cleanedCost) < 99) {
             document.querySelector('.Sale').classList.remove('None')
         } else {
             document.querySelector('.Sale').classList.add('None')
@@ -133,10 +153,11 @@ const Calculator = () => {
                             <div className="CostSimbol">
                                 <img src={ruble} alt="ruble" />
                             </div>
-                            <div className="CostInput RubleCost">{totalCost}</div>
+                            <div className="CostInput RubleCost">{totalCost}{comission !== 0 && <span>&nbsp;(Включая нашу комиссию {comission}₽)</span>}</div>
                         </div>
                     </div>
-                    <div className="Sale None">Для вас применена скидка 50% на комиссию из-за того, что стоимость вещи меньше 50 юаней</div>
+                    <div className="ShipCost">Примерная стоимость доставки: {type === 'item1' ? (<>1700</>) : type === 'item2' ? (<>1000</>) : type === 'item3' && <>1300</>}₽</div>
+                    <div className="Sale None">Для вас применена скидка 50% на комиссию из-за того, что стоимость вещи меньше 99 юаней</div>
                 </>
             }
             <div className="ShipNew">
