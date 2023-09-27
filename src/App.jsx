@@ -21,7 +21,7 @@ function App() {
 
     return (
         <div className="App">
-            <img className='AppBackground' src={background} alt="backgtound" />
+            <img className='AppBackground' src={background} alt="background" />
             <div className='AppLogo'>
                 <img src={logo} alt="logo" />
             </div>
