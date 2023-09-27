@@ -6,7 +6,7 @@ import { getOrder } from "../http/orderAPI";
 
 const Tracker = () => {
     const [trackNumber, setTrackNumber] = useState('')
-    const [order, setOrder] = useState()
+    const [status, setStatus] = useState(0)
 
     const changeTrackNumber = (e) => {
         if (e.target.value.length <= 20) setTrackNumber(e.target.value)
@@ -20,8 +20,11 @@ const Tracker = () => {
 
     const fetchOrder = async (track) => {
         try {
-            getOrder(track).then(data => setOrder(data))
-            console.log(order)
+            await getOrder(track).then((data) => {
+                if (data) setStatus(Number(data))
+                else setStatus(0)
+            })
+            console.log(status)
         } catch (e) {
 
         }
@@ -42,6 +45,42 @@ const Tracker = () => {
                         <div className="SearchNumber">#{trackNumber}</div>
                     </div>
                     <div className="SearchLine"></div>
+                    {status > 0 &&
+                        <div className={`StatusItem ${status === 1 ? 'Active' : ''}`} id="status1">
+                            <div className="StatusCircle"></div>
+                            <div className="StatusText">Выкуплен</div>
+                        </div>
+                    }
+                    {status > 1 &&
+                        <div className={`StatusItem ${status === 2 ? 'Active' : ''}`} id="status2">
+                            <div className="StatusCircle"></div>
+                            <div className="StatusText">Отправлен на легит</div>
+                        </div>
+                    }
+                    {status > 2 &&
+                        <div className={`StatusItem ${status === 3 ? 'Active' : ''}`} id="status3">
+                            <div className="StatusCircle"></div>
+                            <div className="StatusText">Отправлен на склад в Китае</div>
+                        </div>
+                    }
+                    {status > 3 &&
+                        <div className={`StatusItem ${status === 4 ? 'Active' : ''}`} id="status4">
+                            <div className="StatusCircle"></div>
+                            <div className="StatusText">Выехал из китая</div>
+                        </div>
+                    }
+                    {status > 4 && 
+                        <div className={`StatusItem ${status === 5 ? 'Active' : ''}`} id="status5">
+                            <div className="StatusCircle"></div>
+                            <div className="StatusText">Ожидается оплата доставки</div>
+                        </div>
+                    }
+                    {status > 5 &&
+                        <div className={`StatusItem ${status === 6 ? 'Active' : ''}`} id="status6">
+                            <div className="StatusCircle"></div>
+                            <div className="StatusText">Передан в СДЭК</div>
+                        </div>
+                    }
                 </div>
             }
         </div>

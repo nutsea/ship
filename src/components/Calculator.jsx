@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './../styles/calculator.scss'
 
 import box from './../assets/box.png'
@@ -12,9 +12,13 @@ const Calculator = () => {
     const [isChoosing, setIsChoosing] = useState(false)
     const [isChosen, setIsChosen] = useState(false)
     const [type, setType] = useState()
-    const [yuanCost, setYuanCost] = useState()
+    const [yuanCost, setYuanCost] = useState('')
     const [yuanCourse, setYuanCourse] = useState(0)
     const [totalCost, setTotalCost] = useState(0)
+
+    useEffect(() => {
+        fetchYuan()
+    }, [])
 
     const chooseType = () => {
         const arrow = document.querySelector('.Arrow')
@@ -46,9 +50,9 @@ const Calculator = () => {
     }
 
     const calculateCost = (e) => {
+        console.log(e.target.value)
         const cleanedCost = e.target.value.replace(/\D/g, '')
         setYuanCost(cleanedCost)
-        fetchYuan()
         if (e.target.value.length > 0) {
             let totalcost = 0
             if (type === 'item1' && yuanCourse.course) {
@@ -129,7 +133,7 @@ const Calculator = () => {
                             <div className="CostSimbol">
                                 <img src={ruble} alt="ruble" />
                             </div>
-                            <input className="CostInput" type="text" value={totalCost} />
+                            <div className="CostInput RubleCost">{totalCost}</div>
                         </div>
                     </div>
                     <div className="Sale None">Для вас применена скидка 50% на комиссию из-за того, что стоимость вещи меньше 50 юаней</div>
