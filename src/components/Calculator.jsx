@@ -53,25 +53,25 @@ const Calculator = () => {
         console.log(e.target.value)
         const cleanedCost = e.target.value.replace(/\D/g, '')
         setYuanCost(cleanedCost)
-        if (e.target.value.length > 0) {
+        if (cleanedCost > 0) {
             let totalcost = 0
             if (type === 'item1' && yuanCourse.course) {
-                if (Number(e.target.value) < 50) totalcost = Number(yuanCourse.course) * Number(e.target.value) + 500 + 1700
-                else totalcost = Number(yuanCourse.course) * Number(e.target.value) + 999 + 1700
+                if (Number(cleanedCost) < 50) totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 500 + 1700
+                else totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999 + 1700
             }
             if (type === 'item2' && yuanCourse.course) {
-                if (Number(e.target.value) < 50) totalcost = Number(yuanCourse.course) * Number(e.target.value) + 500 + 1700
-                else totalcost = Number(yuanCourse.course) * Number(e.target.value) + 999 + 1000
+                if (Number(cleanedCost) < 50) totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 500 + 1700
+                else totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999 + 1000
             }
             if (type === 'item3' && yuanCourse.course) {
-                if (Number(e.target.value) < 50) totalcost = Number(yuanCourse.course) * Number(e.target.value) + 500 + 1700
-                else totalcost = Number(yuanCourse.course) * Number(e.target.value) + 999 + 1300
+                if (Number(cleanedCost) < 50) totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 500 + 1700
+                else totalcost = Number(yuanCourse.course) * Number(cleanedCost) + 999 + 1300
             }
             setTotalCost(totalcost)
         } else {
             setTotalCost(0)
         }
-        if (e.target.value.length > 0 && Number(e.target.value) < 50) {
+        if (cleanedCost.length > 0 && Number(cleanedCost) < 50) {
             document.querySelector('.Sale').classList.remove('None')
         } else {
             document.querySelector('.Sale').classList.add('None')
