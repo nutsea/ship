@@ -21,6 +21,7 @@ const Tracker = () => {
     const fetchOrder = async (track) => {
         try {
             getOrder(track).then(data => setOrder(data))
+            console.log(order)
         } catch (e) {
 
         }
