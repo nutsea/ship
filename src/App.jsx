@@ -5,6 +5,7 @@ import Calculator from './components/Calculator'
 import Tracker from './components/Tracker'
 
 import logo from './assets/logo.png'
+import background from './assets/background.png'
 
 function App() {
     const [tab, setTab] = useState('calc')
@@ -20,7 +21,7 @@ function App() {
 
     return (
         <div className="App">
-            {/* <div className='Subtitle'>WP SHOP</div> */}
+            <img className='AppBackground' src={background} alt="backgtound" />
             <div className='AppLogo'>
                 <img src={logo} alt="logo" />
             </div>

@@ -13,6 +13,15 @@
     font-family: Montserrat;
     color: rgb(50, 50, 50);
 
+    .AppBackground {
+        position: fixed;
+        z-index: -1;
+        width: 100vw;
+        height: 57vw;
+        min-width: 178vh;
+        min-height: 100vh;
+    }
+
     .Subtitle {
         font-size: 30px;
         font-weight: 800;
