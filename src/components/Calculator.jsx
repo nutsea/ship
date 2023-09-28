@@ -86,7 +86,7 @@ const Calculator = () => {
                     setComission(999)
                 }
             }
-            setTotalCost(totalcost)
+            setTotalCost(Math.ceil(totalcost))
         } else {
             setTotalCost(0)
             setComission(0)
