@@ -156,12 +156,12 @@ const Calculator = () => {
                             <div className="CostInput RubleCost">{totalCost}{comission !== 0 && <span>&nbsp;(Включая нашу комиссию {comission}₽)</span>}</div>
                         </div>
                     </div>
-                    <div className="ShipCost">Примерная стоимость доставки: {type === 'item1' ? (<>1700</>) : type === 'item2' ? (<>1000</>) : type === 'item3' && <>1300</>}₽</div>
+                    <div className="ShipCost">Примерная стоимость доставки: {type === 'item1' ? (<>1800</>) : type === 'item2' ? (<>1000</>) : type === 'item3' && <>1300</>}₽</div>
                     <div className="Sale None">Для вас применена скидка 50% на комиссию из-за того, что стоимость вещи меньше 99 юаней</div>
                 </>
             }
             <div className="ShipNew">
-                <a className="ShipLink" href="https://t.me/ship_snikers" target="_blank" rel="noreferrer">Оформить новый заказ</a>
+                <a className="ShipLink" href="https://t.me/wear_poizon" target="_blank" rel="noreferrer">Оформить новый заказ</a>
             </div>
         </div>
     );
