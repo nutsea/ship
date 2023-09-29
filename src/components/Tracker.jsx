@@ -48,37 +48,37 @@ const Tracker = () => {
                     {status > 0 &&
                         <div className={`StatusItem ${status === 1 ? 'Active' : ''}`} id="status1">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Выкуплен</div>
+                            <div className="StatusText">Выкуплен, едет на склад в Китае</div>
                         </div>
                     }
                     {status > 1 &&
                         <div className={`StatusItem ${status === 2 ? 'Active' : ''}`} id="status2">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Отправлен на легит</div>
+                            <div className="StatusText">Принят на складе, оформляется</div>
                         </div>
                     }
                     {status > 2 &&
                         <div className={`StatusItem ${status === 3 ? 'Active' : ''}`} id="status3">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Отправлен на склад в Китае</div>
+                            <div className="StatusText">Заказ в пути</div>
                         </div>
                     }
                     {status > 3 &&
                         <div className={`StatusItem ${status === 4 ? 'Active' : ''}`} id="status4">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Выехал из китая</div>
+                            <div className="StatusText">Сортируется в Москве</div>
                         </div>
                     }
                     {status > 4 && 
                         <div className={`StatusItem ${status === 5 ? 'Active' : ''}`} id="status5">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Ожидается оплата доставки</div>
+                            <div className="StatusText">Передан в СДЭК</div>
                         </div>
                     }
                     {status > 5 &&
                         <div className={`StatusItem ${status === 6 ? 'Active' : ''}`} id="status6">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Передан в СДЭК</div>
+                            <div className="StatusText">Получен клиентом</div>
                         </div>
                     }
                 </div>
