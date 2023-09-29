@@ -48,7 +48,7 @@ const Tracker = () => {
                     {status > 0 &&
                         <div className={`StatusItem ${status === 1 ? 'Active' : ''}`} id="status1">
                             <div className="StatusCircle"></div>
-                            <div className="StatusText">Выкуплен, едет на склад в Китае</div>
+                            <div className="StatusText">Выкуплен, в пути на склад</div>
                         </div>
                     }
                     {status > 1 &&
