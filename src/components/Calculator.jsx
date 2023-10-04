@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import './../styles/calculator.scss'
 
 import box from './../assets/box.png'
@@ -16,6 +16,7 @@ const Calculator = () => {
     const [yuanCourse, setYuanCourse] = useState(0)
     const [totalCost, setTotalCost] = useState(0)
     const [comission, setComission] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         fetchYuan()
@@ -50,9 +51,18 @@ const Calculator = () => {
         setType(e.target.id)
     }
 
-    const calculateCost = (e) => {
-        console.log(e.target.value)
-        const cleanedCost = e.target.value.replace(/\D/g, '')
+    const calculateCost = useCallback((e) => {
+        if (!yuanCourse.course) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+        let cleanedCost = ''
+        if (e.target) {
+            cleanedCost = e.target.value.replace(/\D/g, '')
+        } else {
+            cleanedCost = e.replace(/\D/g, '')
+        }
         setYuanCost(cleanedCost)
         if (cleanedCost > 0) {
             let totalcost = 0
@@ -96,15 +106,22 @@ const Calculator = () => {
         } else {
             document.querySelector('.Sale').classList.add('None')
         }
-    }
+    }, [yuanCourse, type])
 
     const fetchYuan = async () => {
         try {
-            getYuan().then(data => setYuanCourse(data))
+            getYuan().then((data) => setYuanCourse(data))
         } catch (e) {
 
         }
     }
+
+    useEffect(() => {
+        const input = document.getElementById('costinput')
+        if (input) {
+            input.value && calculateCost(input.value)
+        }
+    }, [yuanCourse, calculateCost])
 
     return (
         <div className="CalculatorContainer">
@@ -144,7 +161,7 @@ const Calculator = () => {
                             <div className="CostSimbol">
                                 <img src={yuan} alt="yuan" />
                             </div>
-                            <input className="CostInput" type="text" placeholder="Цена в юанях" value={yuanCost} onChange={calculateCost} />
+                            <input className="CostInput" id="costinput" type="text" placeholder="Цена в юанях" value={yuanCost} onChange={calculateCost} />
                         </div>
                         <div className="EqualSimbol">
                             <img src={equal} alt="equal" />
@@ -153,7 +170,13 @@ const Calculator = () => {
                             <div className="CostSimbol">
                                 <img src={ruble} alt="ruble" />
                             </div>
-                            <div className="CostInput RubleCost">{totalCost}{comission !== 0 && <span>&nbsp;(Включая нашу комиссию {comission}₽)</span>}</div>
+                            {loading ?
+                                <div className="Loading">
+                                    <span className="LoaderCalc"></span>
+                                </div>
+                                :
+                                <div className="CostInput RubleCost">{totalCost}{comission !== 0 && <span>&nbsp;(Включая нашу комиссию {comission}₽)</span>}</div>
+                            }
                         </div>
                     </div>
                     <div className="ShipCost">Примерная стоимость доставки: {type === 'item1' ? (<>1800</>) : type === 'item2' ? (<>1000</>) : type === 'item3' && <>1300</>}₽</div>

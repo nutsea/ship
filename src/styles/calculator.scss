@@ -182,6 +182,15 @@
                     font-size: 12px;
                 }
             }
+
+            .Loading {
+                width: calc(88% - 20px);
+                padding: 10px 20px 10px 0;
+                height: 25px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
         }
 
         .CostContainer.Ruble {
@@ -259,6 +268,26 @@
         }
     }
 }
+
+.LoaderCalc {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgb(50, 50, 50, 0.5);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 
 
 @media (max-width: 475px) {
     .CalculatorContainer {

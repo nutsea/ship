@@ -7,8 +7,14 @@ import { getOrder } from "../http/orderAPI";
 const Tracker = () => {
     const [trackNumber, setTrackNumber] = useState('')
     const [status, setStatus] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const changeTrackNumber = (e) => {
+        if (!status) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
         if (e.target.value.length <= 20) setTrackNumber(e.target.value)
         if (e.target.value.length > 0) {
             document.querySelector('.TrackInputContainer').classList.add('Active')
@@ -20,11 +26,18 @@ const Tracker = () => {
 
     const fetchOrder = async (track) => {
         try {
+            setLoading(true)
+            setStatus(-1)
             await getOrder(track).then((data) => {
-                if (data) setStatus(Number(data))
-                else setStatus(0)
+                if (data) {
+                    setStatus(Number(data))
+                    setLoading(false)
+                }
+                else {
+                    setStatus(0)
+                    setLoading(false)
+                }
             })
-            console.log(status)
         } catch (e) {
 
         }
@@ -45,6 +58,16 @@ const Tracker = () => {
                         <div className="SearchNumber">#{trackNumber}</div>
                     </div>
                     <div className="SearchLine"></div>
+                    {loading &&
+                        <div className="LoadingTrack">
+                            <span className="LoaderTrack"></span>
+                        </div>
+                    }
+                    {status === 0 &&
+                        <div className="NotFound">
+                            Заказ не найден
+                        </div>
+                    }
                     {status > 0 &&
                         <div className={`StatusItem ${status === 1 ? 'Active' : ''}`} id="status1">
                             <div className="StatusCircle"></div>
